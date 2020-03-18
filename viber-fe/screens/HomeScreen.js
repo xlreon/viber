@@ -6,7 +6,10 @@ export default function HomeScreen() {
   return (
     <Container style={styles.container}>
         <Button>
-          <Text>Click Me</Text>
+          <Text>LOGIN</Text>
+	  </Button>
+  <Button>
+          <Text>SIGN UP</Text>
 	</Button>
 </Container>
   );
@@ -18,6 +21,9 @@ const styles = StyleSheet.create ({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-  }
+  },
+  // button: {
+  //   marginTop: '10px'
+  // }
 })
 
