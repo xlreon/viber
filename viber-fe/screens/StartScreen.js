@@ -28,7 +28,9 @@ export default class StartScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-          <Button style={styles.buttonStyle} onPress={this.signIn} title="Sign in with Google"/>
+          <Button style={styles.buttonStyle} onPress={this.signIn} title="Google"/>
+          <Button style={styles.buttonStyle} onPress={this.signIn} title="FaceBook"/>
+          <Button style={styles.buttonStyle} onPress={this.signIn} title="Twitter"/>
           {this.state.name !== '' && <Text>Hey, {this.state.name}</Text>}
       </View>
     );
@@ -38,14 +40,15 @@ export default class StartScreen extends React.Component {
 const styles = StyleSheet.create ({
   container: {
     flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center'
+    padding: 40,
+    flexDirection: 'column',
+    justifyContent: 'space-evenly',
+    alignItems: 'stretch',
   },
   buttonStyle: {
-    padding: 5,
+    marginTop: 5,
     width: '100%',
-    justifyContent: 'center'
+    justifyContent: 'space-evenly',
   }
 })
 
