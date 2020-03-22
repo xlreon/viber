@@ -1,31 +1,54 @@
 import * as React from 'react';
 import { StyleSheet } from 'react-native'
-import { Container, Button, Text } from 'native-base';
+import { View, Button, Text } from 'react-native';
+import * as Google from 'expo-google-app-auth';
 
-export default function StartScreen() {
-  return (
-    <Container style={styles.container}>
-        <Button style={styles.buttonStyle}>
-          <Text>LOGIN</Text>
-	      </Button>
-        <Button style={styles.buttonStyle}>
-            <Text>SIGN UP</Text>
-        </Button>
-</Container>
-  );
+export default class StartScreen extends React.Component {
+
+    constructor(props) {
+      super(props);
+      this.state = {
+        name: ''
+      }
+    }
+
+    signIn = async () => {
+      try {
+        const result = await Google.logInAsync({
+          androidClientId: "956959997765-v35h5aqm69klm37n5shrctnooqukfdj9.apps.googleusercontent.com",
+          scopes: ["profile", "email"]
+        })
+        result.user && this.setState({name: result.user.name})
+      } catch (e) {
+        console.log("error", e)
+      }
+  }
+  
+  
+  render() {
+    return (
+      <View style={styles.container}>
+          <Button style={styles.buttonStyle} onPress={this.signIn} title="Google"/>
+          <Button style={styles.buttonStyle} onPress={this.signIn} title="FaceBook"/>
+          <Button style={styles.buttonStyle} onPress={this.signIn} title="Twitter"/>
+          {this.state.name !== '' && <Text>Hey, {this.state.name}</Text>}
+      </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create ({
   container: {
     flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center'
+    padding: 40,
+    flexDirection: 'column',
+    justifyContent: 'space-evenly',
+    alignItems: 'stretch',
   },
   buttonStyle: {
-    padding: 5,
-    width: '30%',
-    justifyContent: 'center'
+    marginTop: 5,
+    width: '100%',
+    justifyContent: 'space-evenly',
   }
 })
 
