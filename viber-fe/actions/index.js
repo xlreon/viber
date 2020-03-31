@@ -1,7 +1,4 @@
-const AppActions = {
-    LOGIN: "LOGIN",
-    SIGNUP: "SIGNUP"
-};
+import AppActions from '../constants'
 
 const login = () => dispatch => dispatch({type: AppActions.LOGIN})
 

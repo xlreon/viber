@@ -1,4 +1,4 @@
-import { AppActions } from "../actions";
+import { AppActions } from "../constants";
 import { initialState } from "../store";
 
 function reducer(state = initialState, action) {
